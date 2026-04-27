@@ -35,9 +35,43 @@ Model yang dibandingkan:
 |-- requirements.txt
 ```
 
-## 1. Persiapan Library
+## 1. Membuat Virtual Environment
 
-Library yang digunakan disimpan pada file `requirements.txt`.
+Langkah pertama adalah membuat virtual environment agar library project tidak bercampur dengan library Python lain di komputer.
+
+```bash
+python -m venv .venv
+```
+
+Setelah `.venv` dibuat, virtual environment perlu diaktifkan.
+
+Jika menggunakan Windows PowerShell:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+Jika menggunakan Command Prompt:
+
+```cmd
+.\.venv\Scripts\activate.bat
+```
+
+Jika menggunakan Linux atau macOS:
+
+```bash
+source .venv/bin/activate
+```
+
+Setelah aktif, biasanya terminal akan menampilkan tanda seperti ini:
+
+```text
+(.venv)
+```
+
+## 2. Install Library
+
+Setelah virtual environment aktif, library yang dibutuhkan di-install dari file `requirements.txt`.
 
 ```bash
 pip install -r requirements.txt
@@ -51,7 +85,7 @@ Library utama yang dipakai:
 - `joblib` untuk menyimpan model
 - `kagglehub` untuk mengunduh dataset dari Kaggle
 
-## 2. Download Dataset
+## 3. Download Dataset
 
 Dataset diunduh menggunakan file `download_dataset.py`.
 
@@ -76,7 +110,7 @@ Dataset memiliki target pada kolom `name`, yaitu label buah:
 - `orange`
 - `grapefruit`
 
-## 3. Tahapan Pembuatan Model
+## 4. Tahapan Pembuatan Model
 
 Tahapan utama dilakukan di file `train_models.py`.
 
@@ -162,7 +196,7 @@ models = {
 
 Setiap model dilatih menggunakan data training, lalu diuji menggunakan data testing.
 
-## 4. Evaluasi Model
+## 5. Evaluasi Model
 
 Evaluasi dilakukan menggunakan:
 
@@ -185,7 +219,7 @@ Visualisasi disimpan ke folder:
 outputs/figures/
 ```
 
-## 5. Hasil Perbandingan Model
+## 6. Hasil Perbandingan Model
 
 Berdasarkan output `model_comparison.csv`, hasil perbandingan akurasi adalah:
 
@@ -207,7 +241,7 @@ dengan akurasi:
 0.9395 atau 93.95%
 ```
 
-## 6. Detail Classification Report
+## 7. Detail Classification Report
 
 ### Decision Tree
 
@@ -264,7 +298,7 @@ Ringkasan performa:
 
 SVM menjadi model terbaik pada percobaan ini. Kernel `rbf` membantu model membentuk batas klasifikasi yang lebih fleksibel dibanding pemisahan linear sederhana.
 
-## 7. Output yang Dihasilkan
+## 8. Output yang Dihasilkan
 
 Setelah menjalankan:
 
@@ -287,7 +321,7 @@ program menghasilkan beberapa output:
 | `outputs/figures/decision_tree.png` | Visualisasi struktur Decision Tree |
 | `outputs/figures/confusion_matrix_*.png` | Confusion matrix setiap model |
 
-## 8. Prediksi Data Baru
+## 9. Prediksi Data Baru
 
 File `predict.py` digunakan untuk melakukan prediksi pada data baru menggunakan model terbaik.
 
@@ -305,7 +339,7 @@ outputs/best_model.joblib
 
 File input harus berisi kolom fitur yang sama dengan dataset training, tetapi tanpa kolom target `name`.
 
-## 9. Kesimpulan
+## 10. Kesimpulan
 
 Berdasarkan hasil evaluasi, ketiga model mampu melakukan klasifikasi buah `orange` dan `grapefruit` dengan akurasi di atas 92%.
 
