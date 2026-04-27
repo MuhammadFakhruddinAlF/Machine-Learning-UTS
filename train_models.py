@@ -104,13 +104,17 @@ def train_and_evaluate(
     )
 
     preprocessor = build_preprocessor(x_train)
+
     models = {
+        # Decision Tree Training
         "Decision Tree": DecisionTreeClassifier(
             criterion="gini",
             max_depth=5,
             random_state=RANDOM_STATE,
         ),
+        # Naive Bayes Training
         "Naive Bayes": GaussianNB(),
+        # Support Vector Training
         "Support Vector Machine": SVC(
             kernel="rbf",
             C=1.0,
@@ -130,6 +134,7 @@ def train_and_evaluate(
                 ("model", model),
             ]
         )
+        # Training model
         pipeline.fit(x_train, y_train)
         y_pred = pipeline.predict(x_test)
 
