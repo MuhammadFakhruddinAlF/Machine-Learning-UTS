@@ -43,31 +43,7 @@ Langkah pertama adalah membuat virtual environment agar library project tidak be
 python -m venv .venv
 ```
 
-Setelah `.venv` dibuat, virtual environment perlu diaktifkan.
-
-Jika menggunakan Windows PowerShell:
-
-```powershell
-.\.venv\Scripts\Activate.ps1
-```
-
-Jika menggunakan Command Prompt:
-
-```cmd
-.\.venv\Scripts\activate.bat
-```
-
-Jika menggunakan Linux atau macOS:
-
-```bash
-source .venv/bin/activate
-```
-
-Setelah aktif, biasanya terminal akan menampilkan tanda seperti ini:
-
-```text
-(.venv)
-```
+Setelah `.venv` dibuat, virtual environment di aktifkan.
 
 ## 2. Install Library
 
