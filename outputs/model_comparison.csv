@@ -1,0 +1,4 @@
+model,accuracy,train_rows,test_rows
+Support Vector Machine,0.9395,8000,2000
+Naive Bayes,0.926,8000,2000
+Decision Tree,0.921,8000,2000
