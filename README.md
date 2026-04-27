@@ -217,7 +217,143 @@ dengan akurasi:
 0.9395 atau 93.95%
 ```
 
-## 7. Detail Classification Report
+## 7. Visualisasi dan Penjelasan Angka
+
+### Distribusi Kelas
+
+![Distribusi Kelas](outputs/figures/class_distribution.png)
+
+Grafik ini menunjukkan jumlah data untuk setiap kelas buah.
+
+| Class | Jumlah Data | Persentase |
+|---|---:|---:|
+| orange | 5000 | 50% |
+| grapefruit | 5000 | 50% |
+
+Total dataset adalah `10000` data. Karena jumlah `orange` dan `grapefruit` sama, dataset ini seimbang. Hal ini membantu model agar tidak berat sebelah ke salah satu kelas.
+
+### Korelasi Fitur Numerik
+
+![Korelasi Fitur Numerik](outputs/figures/feature_correlation.png)
+
+Grafik ini menunjukkan hubungan antar fitur numerik. Nilai korelasi berada dari `-1` sampai `1`.
+
+| Nilai Korelasi | Arti |
+|---:|---|
+| Mendekati 1 | Hubungan positif kuat |
+| Mendekati -1 | Hubungan negatif kuat |
+| Mendekati 0 | Hubungan lemah |
+
+Beberapa angka penting:
+
+| Fitur | Korelasi | Penjelasan |
+|---|---:|---|
+| diameter dan weight | 0.999 | Sangat kuat, buah yang diameternya besar hampir selalu lebih berat. |
+| diameter dan green | -0.397 | Hubungan negatif sedang, semakin besar diameter, nilai green cenderung turun. |
+| weight dan green | -0.392 | Hubungan negatif sedang, semakin berat buah, nilai green cenderung turun. |
+| diameter dan blue | 0.363 | Hubungan positif sedang, semakin besar diameter, nilai blue cenderung naik. |
+| red dan green | 0.149 | Hubungan lemah. |
+
+Korelasi `diameter` dan `weight` yang sangat tinggi menunjukkan kedua fitur tersebut membawa informasi yang mirip.
+
+### Confusion Matrix Decision Tree
+
+![Confusion Matrix Decision Tree](outputs/figures/confusion_matrix_decision_tree.png)
+
+Urutan label pada confusion matrix adalah `grapefruit`, lalu `orange`.
+
+| Hasil | Jumlah |
+|---|---:|
+| grapefruit benar diprediksi grapefruit | 936 |
+| grapefruit salah diprediksi orange | 64 |
+| orange salah diprediksi grapefruit | 94 |
+| orange benar diprediksi orange | 906 |
+
+Total prediksi benar:
+
+```text
+936 + 906 = 1842
+```
+
+Total prediksi salah:
+
+```text
+64 + 94 = 158
+```
+
+Akurasi:
+
+```text
+1842 / 2000 = 0.9210 atau 92.10%
+```
+
+### Confusion Matrix Naive Bayes
+
+![Confusion Matrix Naive Bayes](outputs/figures/confusion_matrix_naive_bayes.png)
+
+| Hasil | Jumlah |
+|---|---:|
+| grapefruit benar diprediksi grapefruit | 933 |
+| grapefruit salah diprediksi orange | 67 |
+| orange salah diprediksi grapefruit | 81 |
+| orange benar diprediksi orange | 919 |
+
+Total prediksi benar:
+
+```text
+933 + 919 = 1852
+```
+
+Total prediksi salah:
+
+```text
+67 + 81 = 148
+```
+
+Akurasi:
+
+```text
+1852 / 2000 = 0.9260 atau 92.60%
+```
+
+### Confusion Matrix Support Vector Machine
+
+![Confusion Matrix Support Vector Machine](outputs/figures/confusion_matrix_support_vector_machine.png)
+
+| Hasil | Jumlah |
+|---|---:|
+| grapefruit benar diprediksi grapefruit | 948 |
+| grapefruit salah diprediksi orange | 52 |
+| orange salah diprediksi grapefruit | 69 |
+| orange benar diprediksi orange | 931 |
+
+Total prediksi benar:
+
+```text
+948 + 931 = 1879
+```
+
+Total prediksi salah:
+
+```text
+52 + 69 = 121
+```
+
+Akurasi:
+
+```text
+1879 / 2000 = 0.9395 atau 93.95%
+```
+
+SVM menjadi model terbaik karena memiliki prediksi benar paling banyak, yaitu `1879` dari `2000` data test, dan kesalahan paling sedikit, yaitu `121` data.
+
+### Visualisasi Decision Tree
+
+![Visualisasi Decision Tree](outputs/figures/decision_tree.png)
+
+Gambar ini menunjukkan aturan keputusan yang dibuat oleh model Decision Tree. Setiap node berisi kondisi pemisahan data, misalnya berdasarkan fitur ukuran atau warna. Karena `max_depth=5`, pohon dibatasi sampai kedalaman 5 agar tidak terlalu kompleks.
+
+## 8. Detail Classification Report
 
 ### Decision Tree
 
@@ -274,7 +410,7 @@ Ringkasan performa:
 
 SVM menjadi model terbaik pada percobaan ini. Kernel `rbf` membantu model membentuk batas klasifikasi yang lebih fleksibel dibanding pemisahan linear sederhana.
 
-## 8. Output yang Dihasilkan
+## 9. Output yang Dihasilkan
 
 Setelah menjalankan:
 
@@ -297,7 +433,7 @@ program menghasilkan beberapa output:
 | `outputs/figures/decision_tree.png` | Visualisasi struktur Decision Tree |
 | `outputs/figures/confusion_matrix_*.png` | Confusion matrix setiap model |
 
-## 9. Prediksi Data Baru
+## 10. Prediksi Data Baru
 
 File `predict.py` digunakan untuk melakukan prediksi pada data baru menggunakan model terbaik.
 
@@ -315,7 +451,7 @@ outputs/best_model.joblib
 
 File input harus berisi kolom fitur yang sama dengan dataset training, tetapi tanpa kolom target `name`.
 
-## 10. Kesimpulan
+## 11. Kesimpulan
 
 Berdasarkan hasil evaluasi, ketiga model mampu melakukan klasifikasi buah `orange` dan `grapefruit` dengan akurasi di atas 92%.
 
